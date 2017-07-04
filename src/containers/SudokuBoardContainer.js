@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Actions from '../actions';
-import Cell from '../components/Cell';
+import {default as Cell} from './CellContainer';
 
 class SudokuBoardContainer extends Component {
   constructor(props) {
@@ -9,8 +9,21 @@ class SudokuBoardContainer extends Component {
     this.state = {
       board: Actions.loadBoard(Actions.boardExample)
     };
+
+    var handleUpdateCell = this.handleUpdateCell.bind(this);
   }
+  
+  //  update puzzle with new value
+  handleUpdateCell(i, j, value) {
+      var updatedBoard = this.state.board;
+      updatedBoard[i][j]['value'] = value;
+      this.setState({
+        board: updatedBoard
+      });
+  }
+
   render() {
+    var handleUpdateCell = this.handleUpdateCell;
     return (
       <div>
         <table>
@@ -21,7 +34,8 @@ class SudokuBoardContainer extends Component {
                   <tr key={i}>
                     {row.map((cell, j) => (
                         <Cell key={j} 
-                              cell={cell} />
+                              cell={cell}
+                              handleUpdateCell={handleUpdateCell.bind(this)} />
                       ))}
                   </tr>
                 );

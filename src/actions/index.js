@@ -16,8 +16,10 @@ const loadBoard = (board) => {
         var row = []
         for (var j = 0; j < 9; j++) {
             var index = i*9 + j;
+            var value = parseInt(board[index], 10);
+            value = (value !== 0) ? value : null;
             row.push(
-                createNewCell(i, j, parseInt(board[index], 10), (board[index] !== '0'))
+                createNewCell(i, j, value, (value !== null))
             );
         }
         boardCells.push(row);

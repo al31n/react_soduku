@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Cell = ({cell}) => (
+const Cell = ({cell, onChange}) => (
     <td>
       <input maxLength="1" 
              size="1" 
              defaultValue={(cell.value !== 0) ? cell.value : ""} 
-             readOnly={cell.editable} />
+             readOnly={cell.editable}
+             onChange={onChange} />
     </td>
 )
 
