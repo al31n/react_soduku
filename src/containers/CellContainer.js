@@ -18,7 +18,9 @@ class CellContainer extends Component {
             event.target.value = cell.value;
             return;
         }
-
+        if (newValue === '') {
+            newValue = null;
+        }
         this.props.handleUpdateCell(cell.row, cell.col, newValue);
     }
     render() {

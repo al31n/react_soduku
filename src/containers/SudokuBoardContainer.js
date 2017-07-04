@@ -16,10 +16,11 @@ class SudokuBoardContainer extends Component {
   //  update puzzle with new value
   handleUpdateCell(i, j, value) {
       var updatedBoard = this.state.board;
-      updatedBoard[i][j]['value'] = value;
+      updatedBoard[i][j].value = value;
       this.setState({
         board: updatedBoard
       });
+      Actions.markConflicts(this.state.board);
   }
 
   render() {
