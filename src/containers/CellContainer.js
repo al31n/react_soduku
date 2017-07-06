@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Cell from '../components/Cell';
 
-
 class CellContainer extends Component {
     constructor(props) {
         super(props);
@@ -25,7 +24,10 @@ class CellContainer extends Component {
     }
     render() {
         var cell = this.props.cell;
-        return <Cell cell={cell} onChange={this.onChange} />
+        
+        return (
+                <Cell cell={cell} onChange={this.onChange} />
+        );
     }
 }
 

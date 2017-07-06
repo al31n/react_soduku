@@ -18,7 +18,7 @@ const loadBoard = (board) => {
             var index = i*9 + j;
             var value = (board[index] !== '0') ? board[index] : null;
             row.push(
-                createNewCell(i, j, value, (value !== null))
+                createNewCell(i, j, value, (value === null))
             );
         }
         boardCells.push(row);

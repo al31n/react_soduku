@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Actions from '../actions';
 import {default as Cell} from './CellContainer';
+import sudokuBoardStyle from './SudokuBoard.css';
 
 class SudokuBoardContainer extends Component {
   constructor(props) {
@@ -27,16 +28,17 @@ class SudokuBoardContainer extends Component {
     var handleUpdateCell = this.handleUpdateCell;
     return (
       <div>
-        <table>
+        <table style={sudokuBoardStyle}>
           <tbody>
             {
               this.state.board.map((row, i) => {
                 return (
                   <tr key={i}>
                     {row.map((cell, j) => (
-                        <Cell key={j} 
-                              cell={cell}
-                              handleUpdateCell={handleUpdateCell.bind(this)} />
+                        <td key={j} className={"r" + i + " c" + j}>
+                          <Cell cell={cell}
+                                handleUpdateCell={handleUpdateCell.bind(this)} />
+                        </td>
                       ))}
                   </tr>
                 );

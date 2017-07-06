@@ -1,18 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CellStyle from './Cell.css';
 
-const styles = {border: "1px solid red"}
+const Cell = ({cell, onChange}) => {
+    var classNames = [];
+    classNames.push(cell.editable ? 'editable' : 'not-editable');
+    classNames.push(cell.hasConflict ? 'has-conflict' : 'no-conflict');
 
-const Cell = ({cell, onChange}) => (
-    <td>
-      <input maxLength="1" 
-             size="1" 
-             defaultValue={(cell.value !== "") ? cell.value : ""} 
-             readOnly={cell.editable}
-             onChange={onChange} 
-             style={cell.hasConflict? styles: {}}/>
-    </td>
-)
+    return (
+        <input className={classNames.join(' ')}
+                style={CellStyle}
+                maxLength="1" 
+                size="1" 
+                defaultValue={(cell.value !== "") ? cell.value : ""}
+                readOnly={!cell.editable} 
+                onChange={onChange}/>
+    );
+}
 
 Cell.PropTypes = { 
   row: PropTypes.number,

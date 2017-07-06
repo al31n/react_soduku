@@ -5,7 +5,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Soduku</h1>
+        <h1 style={{textAlign: "center"}}>Soduku</h1>
         <SudokuBoardContainer />
       </div>
     );

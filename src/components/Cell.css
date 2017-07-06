@@ -1,0 +1,15 @@
+input {
+    width: 35px;
+    height: 35px;
+    border: 0px;
+    text-align: center;
+    font-size: 16pt;
+}
+
+.not-editable {
+    font-weight: bold;
+}
+
+.has-conflict {
+    color: red;
+}
