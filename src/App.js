@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import SudokuBoardContainer from './containers/SudokuBoardContainer';
+import {default as SudokuBoard} from './components/SudokuBoard';
 
 class App extends Component {
   render() {
     return (
       <div>
         <h1 style={{textAlign: "center"}}>Soduku</h1>
-        <SudokuBoardContainer />
+        <SudokuBoard />
+        
       </div>
     );
   }

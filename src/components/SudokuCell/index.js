@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import Cell from '../components/Cell';
+import Cell from './Cell';
 
-class CellContainer extends Component {
+class SudokuCellContainer extends Component {
     constructor(props) {
         super(props);
         // this.onClick = this.onClick.bind(this);
@@ -31,4 +31,4 @@ class CellContainer extends Component {
     }
 }
 
-export default CellContainer;
+export default SudokuCellContainer;

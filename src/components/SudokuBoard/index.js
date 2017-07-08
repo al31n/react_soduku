@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Actions from '../actions';
-import {default as Cell} from './CellContainer';
+import Actions from '../../actions';
+import {default as Cell} from '../SudokuCell';
 import sudokuBoardStyle from './SudokuBoard.css';
 
 class SudokuBoardContainer extends Component {
