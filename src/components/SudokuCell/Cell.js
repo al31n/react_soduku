@@ -6,7 +6,7 @@ const Cell = ({cell, onChange}) => {
     var classNames = [];
     classNames.push(cell.editable ? 'editable' : 'not-editable');
     classNames.push(cell.hasConflict ? 'has-conflict' : 'no-conflict');
-
+    
     return (
         <input className={classNames.join(' ')}
                 style={CellStyle}
@@ -18,13 +18,15 @@ const Cell = ({cell, onChange}) => {
     );
 }
 
-Cell.PropTypes = { 
-  row: PropTypes.number,
-  col: PropTypes.number,
-  value: PropTypes.number,
-  selected: PropTypes.bool,
-  hasConflict: PropTypes.bool,
-  editable: PropTypes.bool.isRequired
+Cell.propTypes = {
+  cell: PropTypes.shape({
+    row: PropTypes.number,
+    col: PropTypes.number,
+    value: PropTypes.string,
+    selected: PropTypes.bool,
+    hasConflict: PropTypes.bool,
+    editable: PropTypes.bool.isRequired
+  })
 }
 
 export default Cell;

@@ -1,49 +1,25 @@
 import React, {Component} from 'react';
-import Actions from '../../actions';
+import {connect} from 'react-redux';
 import {default as Cell} from '../SudokuCell';
-import sudokuBoardStyle from './SudokuBoard.css';
+import SudokuBoardStyle from './SudokuBoard.css';
+import PropTypes from 'prop-types';
 
-class SudokuBoardContainer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      board: Actions.loadBoard(Actions.boardExample)
-    };
-
-    var handleUpdateCell = this.handleUpdateCell.bind(this);
-  }
-  
-  //  update puzzle with new value
-  handleUpdateCell(i, j, value) {
-      var updatedBoard = this.state.board;
-      updatedBoard[i][j].value = value;
-      this.setState({
-        board: updatedBoard
-      });
-      Actions.markConflicts(this.state.board);
-  }
-
+class SudokuBoard extends Component {
   render() {
-    var handleUpdateCell = this.handleUpdateCell;
     return (
       <div>
-        <table style={sudokuBoardStyle}>
+        <table style={SudokuBoardStyle}>
           <tbody>
-            {
-              this.state.board.map((row, i) => {
-                return (
-                  <tr key={i}>
-                    {row.map((cell, j) => (
-                        <td key={j} className={"r" + i + " c" + j}>
-                          <Cell cell={cell}
-                                handleUpdateCell={handleUpdateCell.bind(this)} />
-                        </td>
-                      ))}
-                  </tr>
-                );
-              })
-            }
+            {this.props.board.map((row, i) => (
+              <tr key={i}>
+                {row.map((cell, j) => (
+                    <td key={j} className={"r" + i + " c" + j}>
+                      <Cell cell={cell} />
+                    </td>
+                ))}
+              </tr>
+              )
+            )}
           </tbody>
         </table>
       </div>
@@ -51,4 +27,23 @@ class SudokuBoardContainer extends Component {
   }
 }
 
-export default SudokuBoardContainer;
+SudokuBoard.propTypes = {
+  board: PropTypes.arrayOf(
+          PropTypes.arrayOf(
+            PropTypes.shape({
+              row: PropTypes.number.isRequired,
+              col: PropTypes.number.isRequired,
+              value: PropTypes.string,
+              selected: PropTypes.bool,
+              hasConflict: PropTypes.bool.isRequired,
+              editable: PropTypes.bool.isRequired
+            })
+          )
+        )
+}
+
+const mapStateToProps = (state) => ({
+    board : state.sudoku.board
+})
+
+export default connect(mapStateToProps)(SudokuBoard);

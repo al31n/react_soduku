@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {default as SudokuBoard} from './components/SudokuBoard';
+import SudokuBoard from '../components/SudokuBoard';
 
 class App extends Component {
   render() {
@@ -7,7 +7,6 @@ class App extends Component {
       <div>
         <h1 style={{textAlign: "center"}}>Soduku</h1>
         <SudokuBoard />
-        
       </div>
     );
   }

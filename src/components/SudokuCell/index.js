@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import Cell from './Cell';
+import {connect} from 'react-redux';
+import * as actions from '../../actions';
 
 class SudokuCellContainer extends Component {
     constructor(props) {
         super(props);
-        // this.onClick = this.onClick.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
@@ -20,15 +21,17 @@ class SudokuCellContainer extends Component {
         if (newValue === '') {
             newValue = null;
         }
-        this.props.handleUpdateCell(cell.row, cell.col, newValue);
+        this.props.updateValue(cell.row, cell.col, newValue);
     }
-    render() {
-        var cell = this.props.cell;
-        
-        return (
-                <Cell cell={cell} onChange={this.onChange} />
-        );
+    render() {        
+        return (<Cell cell={this.props.cell} onChange={this.onChange} />);
     }
 }
 
-export default SudokuCellContainer;
+const mapDispatchToProps = (dispatch) => ({
+    updateValue: (i, j, newValue) => {
+        dispatch(actions.updateValue(i, j, newValue))
+    }
+});
+
+export default connect(null, mapDispatchToProps)(SudokuCellContainer);
